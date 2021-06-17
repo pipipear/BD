@@ -1,10 +1,10 @@
-//META{"name":"Premium","version":"0.1.1","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","updateUrl":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
+//META{"name":"Premium","version":"0.1.2","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","updateUrl":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
 
 
 class Premium {
 	/* BD metadata */
 	getName        = () => "Premium";
-	getVersion     = () => "0.1.1";
+	getVersion     = () => "0.1.2";
 	getAuthor      = () => "Pi";
 	getDescription = () => "become epic hacker and listen along without giving money to spotify";
 
@@ -28,7 +28,7 @@ class Premium {
 			window.realPremiumFunctions = {};
 			window.realPremiumFunctions.ensureSpotifyPremium = BdApi.findModuleByProps('ensureSpotifyPremium').ensureSpotifyPremium;
 			window.realPremiumFunctions.isSpotifyPremium     = BdApi.findModuleByProps('isSpotifyPremium').ensureSpotifyPremium;
-			this.log('created global reference');
+			this.log('created new global reference');
 		}
 	}
 
