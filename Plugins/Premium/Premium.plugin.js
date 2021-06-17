@@ -4,7 +4,7 @@
 class Premium {
 	/* BD stuff */
 	getName        = () => "Premium";
-	getVersion     = () => "0.2.0";
+	getVersion     = () => "0.1.0";
 	getAuthor      = () => "pi";
 	getDescription = () => "become epic hacker and listen along without giving money to spotify";
 
