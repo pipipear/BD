@@ -1,4 +1,4 @@
-//META{"name":"Premium","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
+//META{"name":"Premium","version":"0.6.0","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
 
 
 class Premium {
