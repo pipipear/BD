@@ -1,16 +1,16 @@
-//META{"name":"Premium","version":"0.1.0","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","updateUrl":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
+//META{"name":"Premium","version":"0.1.1","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","updateUrl":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
 
 
 class Premium {
-	/* BD stuff */
+	/* BD metadata */
 	getName        = () => "Premium";
-	getVersion     = () => "0.1.0";
-	getAuthor      = () => "pi";
+	getVersion     = () => "0.1.1";
+	getAuthor      = () => "Pi";
 	getDescription = () => "become epic hacker and listen along without giving money to spotify";
 
 
 
-	/* poggers hijacking */
+	/* Override functions */
 
 	log(m) {
 		console.log(
