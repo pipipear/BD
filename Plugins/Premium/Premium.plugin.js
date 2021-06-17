@@ -1,10 +1,10 @@
-//META{"name":"Premium","version":"0.6.0","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
+//META{"name":"Premium","version":"0.1.0","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","updateUrl":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
 
 
 class Premium {
 	/* BD stuff */
 	getName        = () => "Premium";
-	getVersion     = () => "0.6.0";
+	getVersion     = () => "0.1.0";
 	getAuthor      = () => "pi";
 	getDescription = () => "become epic hacker and listen along without giving money to spotify";
 
