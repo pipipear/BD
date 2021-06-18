@@ -1,10 +1,10 @@
 /**
  * @name Premium
- * @version 0.1.3
+ * @version 0.1.4
  * @author Pi
  * @description become epic hacker and listen along without giving money to spotify
- * @website https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js
- * @source https://github.com/pipipear/BD
+ * @website https://github.com/pipipear/BD
+ * @source https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js
  * @updateUrl https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js
  */
 
