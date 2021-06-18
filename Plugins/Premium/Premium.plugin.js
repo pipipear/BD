@@ -1,20 +1,17 @@
-//META{"name":"Premium","version":"0.1.2","source":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","updateUrl":"https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js","website":"https://raw.githubusercontent.com/pipipear/BD/"}*//
-
+/**
+ * @name Premium
+ * @version 0.1.3
+ * @author Pi
+ * @description become epic hacker and listen along without giving money to spotify
+ * @website https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js
+ * @source https://github.com/pipipear/BD
+ * @updateUrl https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Premium/Premium.plugin.js
+ */
 
 class Premium {
-	/* BD metadata */
-	getName        = () => "Premium";
-	getVersion     = () => "0.1.2";
-	getAuthor      = () => "Pi";
-	getDescription = () => "become epic hacker and listen along without giving money to spotify";
-
-
-
-	/* Override functions */
-
 	log(m) {
 		console.log(
-			`%c[%c${this.getName()}%c] %c${m}`,
+			`%c[%cPremium%c] %c${m}`,
 			'font-weight: bold; color: #118239',
 			'font-weight: bold; color: #1ED760',
 			'font-weight: bold; color: #118239', ''
@@ -34,17 +31,19 @@ class Premium {
 
 	start() {
 		BdApi.findModuleByProps('ensureSpotifyPremium').ensureSpotifyPremium = () => {
-			this.log('intercepted ensureSpotifyPremium');
+			this.log('ensureSpotifyPremium bypassed');
 			return Promise.resolve();
 		}
 		BdApi.findModuleByProps('isSpotifyPremium').isSpotifyPremium = () => {
-			this.log('intercepted isSpotifyPremium');
+			this.log('isSpotifyPremium bypassed');
 			return true
 		}
+		this.log('patched premium checks');
 	}
-
+	
 	stop() {
 		BdApi.findModuleByProps('ensureSpotifyPremium').ensureSpotifyPremium = window.realPremiumFunctions.ensureSpotifyPremium;
 		BdApi.findModuleByProps('isSpotifyPremium').isSpotifyPremium         = window.realPremiumFunctions.isSpotifyPremium;
+		this.log('unpatched premium checks');
 	}
 }
