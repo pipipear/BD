@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.6
+ * @version 0.1.7
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -111,7 +111,7 @@ class Petrify {
 	}
 
 	async start() {
-    fetch(BdApi.Plugins.get('Petrify').updateUrl).then(r => r.text()).then(f => {
+    fetch(`${BdApi.Plugins.get('Petrify').updateUrl}?${Math.random()}`).then(r => r.text()).then(f => {
       var remver = wvm.pvf(f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0]);
       var locver = wvm.pvf(BdApi.Plugins.get('Petrify').version);
       if (remver > locver) {
