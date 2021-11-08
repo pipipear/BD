@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.10
+ * @version 0.1.12
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -111,11 +111,12 @@ class Petrify {
   }
 
   async start() {
-    fetch(`${BdApi.Plugins.get('Petrify').updateUrl}?${Math.random()}`).then(r => r.text()).then(f => {
-      var remver = wvm.pvf(f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0]);
+    fetch(BdApi.Plugins.get('Petrify').updateUrl).then(r => r.text()).then(f => {
+      var remvrr = f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0];
+      var remver = wvm.pvf(remvrr);
       var locver = wvm.pvf(BdApi.Plugins.get('Petrify').version);
       if (remver > locver) {
-        wvm.log(`installing version ${BdApi.Plugins.get('Petrify').version}`);
+        wvm.log(`installing version ${remvrr}`);
         require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "Petrify.plugin.js"), f, (e) => e && (console.error(e), BdApi.alert('Petrify', 'failed to write plugin update to disk')));
       } else if (remver === locver) {
         wvm.log('no updates available');
