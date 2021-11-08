@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.7
+ * @version 0.1.8
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -30,8 +30,8 @@ class Petrify {
     `);
 
     if (window.wvm) {
-			this.log('global reference already exists');
-		} else {
+      this.log('global reference already exists');
+    } else {
       var tmpvcf = BdApi.findModuleByProps('toggleSelfMute');
       var tmpvsf = BdApi.findModuleByPrototypes('voiceStateUpdate');
       window.wvm = {
@@ -108,9 +108,9 @@ class Petrify {
       newargs[4] = arguments[4] || wvm.fVide();
       return wvm.vsu.apply(this, newargs);
     };
-	}
+  }
 
-	async start() {
+  async start() {
     fetch(`${BdApi.Plugins.get('Petrify').updateUrl}?${Math.random()}`).then(r => r.text()).then(f => {
       var remver = wvm.pvf(f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0]);
       var locver = wvm.pvf(BdApi.Plugins.get('Petrify').version);
@@ -142,11 +142,6 @@ class Petrify {
       return wvm.tsd.apply(this, arguments);
     };
 
-    while (!document.querySelector('button[aria-label="Mute"]') || document.querySelector('video[class^=ready-][autoplay][playsinline]')) {
-      wvm.log('waiting for ui to load...');
-      await new Promise(r => setTimeout(r, 500));
-    }
-
     document.body.addEventListener('click', wvm.eRoute, true);
     this.log('patched voice functions');
   }
@@ -160,5 +155,5 @@ class Petrify {
     wvm.vcf.toggleSelfDeaf = wvm.tsd;
     document.body.removeEventListener('click', wvm.eRoute, true);
     this.log('unpatched voice functions');
-	}
+  }
 }
