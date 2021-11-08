@@ -1,13 +1,13 @@
 /**
  * @name Petrify
- * @version 0.1.1
+ * @version 0.1.2
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
+ * @source https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Petrify/Petrify.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Petrify/Petrify.plugin.js
  */
 
-  // * source https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Petrify/Petrify.plugin.js
-  // * updateUrl https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Petrify/Petrify.plugin.js
 
 class Petrify {
 	log(m) {
