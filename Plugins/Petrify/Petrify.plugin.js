@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.4
+ * @version 0.1.5
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -42,6 +42,7 @@ class Petrify {
         sve: tmpvcf.setVideoEnabled,
         tsm: tmpvcf.toggleSelfMute,
         tsd: tmpvcf.toggleSelfDeaf,
+        pvf: (v) => { for (var r = ("" + v).replace("_", ".").replace(/[^0-9.]/g, "").split("."), o = 0, l = 0; l < r.length; ++l) o += Number(r[l]) / Math.pow(10, 3 * l); return o },
         pVsu: [],
         fVide: () => document.querySelector('button[aria-label$="Camera"]')?.dataset?.petrify == 'true',
         sMute: false,
@@ -54,7 +55,7 @@ class Petrify {
             document.querySelector('button[aria-label$="Camera"]').dataset.petrify = s;
             wvm.vsf.prototype.voiceStateUpdate.apply(wvm.pVsu[0], wvm.pVsu[1])
           } else {
-            BdApi.alert('Petrify - Delayed injection', 'toggle mute or deafen then try again');
+            BdApi.alert('Petrify', 'injection was delayed, toggle mute or deafen then try again');
           }
         },
         cMute: (s) => {
@@ -110,6 +111,21 @@ class Petrify {
 	}
 
 	async start() {
+    fetch(BdApi.Plugins.get('Petrify').updateUrl).then(r => r.text()).then(f => {
+      var remver = wvm.pvf(f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0]);
+      var locver = wvm.pvf(BdApi.Plugins.get('Petrify').version);
+      if (remver > locver) {
+        require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "Petrify.plugin.js"), f, (e) => e && (console.error(e), BdApi.alert('Petrify', 'failed to write plugin update to disk')));
+      } else if (remver === locver) {
+        wvm.log('no updates available');
+      } else if (remver < locver){
+        wvm.log('plugin version is ahead');
+      } else {
+        wvm.log('plugin versions incomparable');
+        BdApi.alert('Petrify', 'there was an issue checking the plugin version');
+      }
+    }).catch(e => (console.error(e), BdApi.alert('Petrify', 'failed to check for updates')));
+
     wvm.vcf.setVideoEnabled = function () {
       wvm.cVide(false);
       return wvm.sve.apply(this, arguments);
