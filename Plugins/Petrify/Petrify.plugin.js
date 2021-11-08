@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.5
+ * @version 0.1.6
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -141,8 +141,6 @@ class Petrify {
       wvm.cDeaf(false);
       return wvm.tsd.apply(this, arguments);
     };
-
-    var waitextra = !document.querySelector('button[aria-label="Mute"]');
 
     while (!document.querySelector('button[aria-label="Mute"]') || document.querySelector('video[class^=ready-][autoplay][playsinline]')) {
       wvm.log('waiting for ui to load...');
