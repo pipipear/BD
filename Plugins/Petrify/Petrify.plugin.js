@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.8
+ * @version 0.1.9
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -10,16 +10,16 @@
 
 
 class Petrify {
-	log(m) {
-		console.log(
-			`%c[%cPetrify%c] %c${m}`,
-			'font-weight: bold; color: #1f7fbf',
-			'font-weight: bold; color: #63e5f3',
-			'font-weight: bold; color: #1f7fbf', ''
-		);
-	}
+  log(m) {
+    console.log(
+      `%c[%cPetrify%c] %c${m}`,
+      'font-weight: bold; color: #1f7fbf',
+      'font-weight: bold; color: #63e5f3',
+      'font-weight: bold; color: #1f7fbf', ''
+    );
+  }
 
-	load() {
+  load() {
     BdApi.injectCSS('Petrify-CSS', `
       button[aria-label$="Camera"][data-petrify="true"] {
         background-color: #458bc4;
@@ -100,7 +100,7 @@ class Petrify {
     }
 
     BdApi.findModuleByPrototypes('voiceStateUpdate').prototype.voiceStateUpdate = function () {
-      wvm.pVsu = [this, [...arguments]]
+      wvm.pVsu = [this, [...arguments]];
       wvm.log(JSON.stringify(arguments));
       let newargs = [...arguments];
       newargs[2] = arguments[2] || wvm.sMute || wvm.attFx;
@@ -115,10 +115,11 @@ class Petrify {
       var remver = wvm.pvf(f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0]);
       var locver = wvm.pvf(BdApi.Plugins.get('Petrify').version);
       if (remver > locver) {
+        wvm.log(`installing version ${locver}`);
         require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "Petrify.plugin.js"), f, (e) => e && (console.error(e), BdApi.alert('Petrify', 'failed to write plugin update to disk')));
       } else if (remver === locver) {
         wvm.log('no updates available');
-      } else if (remver < locver){
+      } else if (remver < locver) {
         wvm.log('plugin version is ahead');
       } else {
         wvm.log('plugin versions incomparable');
@@ -145,7 +146,7 @@ class Petrify {
     document.body.addEventListener('click', wvm.eRoute, true);
     this.log('patched voice functions');
   }
-    
+
   stop() {
     if (wvm.fVide()) wvm.cVide(false);
     if (wvm.sMute) wvm.tsm(), wvm.cMute(false);
