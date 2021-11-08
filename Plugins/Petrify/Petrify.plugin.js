@@ -1,10 +1,10 @@
 /**
  * @name Petrify
- * @version 0.1.3
+ * @version 0.1.4
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
- * @source https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Petrify/Petrify.plugin.js
+ * @source https://github.com/pipipear/BD/tree/main/Plugins/Petrify
  * @updateUrl https://raw.githubusercontent.com/pipipear/BD/main/Plugins/Petrify/Petrify.plugin.js
  */
 
