@@ -97,9 +97,7 @@ class Petrify {
         log: this.log
       }
     }
-	}
 
-	async start() {
     BdApi.findModuleByPrototypes('voiceStateUpdate').prototype.voiceStateUpdate = function () {
       wvm.pVsu = [this, [...arguments]]
       wvm.log(JSON.stringify(arguments));
@@ -109,7 +107,9 @@ class Petrify {
       newargs[4] = arguments[4] || wvm.fVide();
       return wvm.vsu.apply(this, newargs);
     };
+	}
 
+	async start() {
     wvm.vcf.setVideoEnabled = function () {
       wvm.cVide(false);
       return wvm.sve.apply(this, arguments);
@@ -140,7 +140,6 @@ class Petrify {
   stop() {
     if (wvm.sMute) wvm.tsm(), wvm.cMute(false);
     if (wvm.sDeaf) wvm.tsd(), wvm.cDeaf(false);
-    BdApi.findModuleByPrototypes('voiceStateUpdate').prototype.voiceStateUpdate = wvm.vsu;
     wvm.vcf.setVideoEnabled = wvm.sve
     wvm.vcf.toggleSelfMute = wvm.tsm;
     wvm.vcf.toggleSelfDeaf = wvm.tsd;
