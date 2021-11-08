@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.2
+ * @version 0.1.3
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -138,6 +138,7 @@ class Petrify {
   }
     
   stop() {
+    if (wvm.fVide()) wvm.cVide(false);
     if (wvm.sMute) wvm.tsm(), wvm.cMute(false);
     if (wvm.sDeaf) wvm.tsd(), wvm.cDeaf(false);
     wvm.vcf.setVideoEnabled = wvm.sve
