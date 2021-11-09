@@ -1,6 +1,6 @@
 /**
  * @name Petrify
- * @version 0.1.12
+ * @version 0.1.13
  * @author Pi
  * @description spoof mute, deafen, and camera 
  * @website https://github.com/pipipear/BD
@@ -20,15 +20,6 @@ class Petrify {
   }
 
   load() {
-    BdApi.injectCSS('Petrify-CSS', `
-      button[aria-label$="Camera"][data-petrify="true"] {
-        background-color: #458bc4;
-      }
-      button[aria-label$="Camera"][data-petrify="true"]:hover {
-        background-color: #49abc9;
-      }
-    `);
-
     if (window.wvm) {
       this.log('global reference already exists');
     } else {
@@ -114,9 +105,13 @@ class Petrify {
     fetch(BdApi.Plugins.get('Petrify').updateUrl).then(r => r.text()).then(f => {
       var remvrr = f.match(/\/\*\*\s*\n([^\*]|(\*(?!\/)))*\*\//)[0].match(/(?<=\* @version ).+/)[0];
       var remver = wvm.pvf(remvrr);
-      var locver = wvm.pvf(BdApi.Plugins.get('Petrify').version);
+      var locvrr = BdApi.Plugins.get('Petrify').version;
+      var locver = wvm.pvf(locvrr);
       if (remver > locver) {
-        wvm.log(`installing version ${remvrr}`);
+        wvm.log(`updating ${locvrr} => ${remvrr}`);
+        BdApi.Plugins.disable('Petrify');
+        BdApi.findModuleByPrototypes('voiceStateUpdate').prototype.voiceStateUpdate = wvm.vsu;
+        delete wvm;
         require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "Petrify.plugin.js"), f, (e) => e && (console.error(e), BdApi.alert('Petrify', 'failed to write plugin update to disk')));
       } else if (remver === locver) {
         wvm.log('no updates available');
@@ -127,6 +122,15 @@ class Petrify {
         BdApi.alert('Petrify', 'there was an issue checking the plugin version');
       }
     }).catch(e => (console.error(e), BdApi.alert('Petrify', 'failed to check for updates')));
+
+    BdApi.injectCSS('Petrify-CSS', `
+      button[aria-label$="Camera"][data-petrify="true"] {
+        background-color: #458bc4;
+      }
+      button[aria-label$="Camera"][data-petrify="true"]:hover {
+        background-color: #49abc9;
+      }
+    `);
 
     wvm.vcf.setVideoEnabled = function () {
       wvm.cVide(false);
@@ -149,6 +153,7 @@ class Petrify {
   }
 
   stop() {
+    BdApi.clearCSS('Petrify-CSS');
     if (wvm.fVide()) wvm.cVide(false);
     if (wvm.sMute) wvm.tsm(), wvm.cMute(false);
     if (wvm.sDeaf) wvm.tsd(), wvm.cDeaf(false);
