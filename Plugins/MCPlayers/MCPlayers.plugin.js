@@ -1,6 +1,6 @@
 /**
  * @name MCPlayers
- * @version 0.1.1
+ * @version 0.1.2
  * @author Pi
  * @description shows the player list for supported servers (make a pr to add your own)
  * @website https://github.com/pipipear/BD
@@ -49,7 +49,7 @@
   async fetchPlayers(ip, server) {
     let res = await fetch(`https://api.minetools.eu/ping/${ip}/25565`);
     let json = await res.json();
-    let players = json?.players?.sample?.map(e => e?.name);
+    let players = json?.players?.sample?.map(e => e?.name)?.sort();
     if (players == undefined) players = null;
     mcp.cache[ip] = players;
     await this.printPlayers(players, server)
