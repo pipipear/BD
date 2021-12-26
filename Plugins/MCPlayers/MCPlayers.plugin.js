@@ -1,6 +1,6 @@
 /**
  * @name MCPlayers
- * @version 0.1.2
+ * @version 0.1.3
  * @author Pi
  * @description shows the player list for supported servers (make a pr to add your own)
  * @website https://github.com/pipipear/BD
@@ -42,7 +42,8 @@
   }
 
   async listPlayers(ip, server) {
-    this.printPlayers(mcp.cache[ip], server);
+    // this.printPlayers(mcp.cache[ip], server);
+    this.printPlayers(undefined, server);
     await this.fetchPlayers(ip, server);
   }
 
