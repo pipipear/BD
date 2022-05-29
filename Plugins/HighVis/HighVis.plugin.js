@@ -1,14 +1,14 @@
 /**
  * @name HighVis
  * @author Pi
- * @description keep a list of detected invisible users
+ * @description Keeps track of invisible accounts
  * @website https://github.com/pipipear/BD
  * @source https://github.com/pipipear/BD/tree/main/Plugins/HighVis
  */
 
 
 class HighVis {
-  getVersion = () => '0.1.0' // Zlibary requires a quoted string
+  getVersion = () => '0.1.1' // Zlibary requires a quoted string
 
   invisArray = []
   presDedupe = []
