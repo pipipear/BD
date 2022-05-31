@@ -8,7 +8,7 @@
 
 
 class HighVis {
-  getVersion = () => '0.1.3' // Zlibary requires a quoted string
+  getVersion = () => '1.0.0' // Zlibary requires a quoted string
 
   invisArray = []
   presDedupe = []
