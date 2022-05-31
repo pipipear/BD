@@ -8,7 +8,7 @@
 
 
 class HighVis {
-  getVersion = () => '0.1.2' // Zlibary requires a quoted string
+  getVersion = () => '0.1.3' // Zlibary requires a quoted string
 
   invisArray = []
   presDedupe = []
@@ -118,8 +118,10 @@ class HighVis {
         fill: hsl(282 calc(var(--saturation-factor, 1) * 49%) 64%) !important;
       }
     `)
-
-    HVG.MemberListItem = await ZLibrary.ReactComponents.getComponentByName('MemberListItem')
+    
+    HVG.MemberClasses = ZLibrary.WebpackModules.getByProps("member", "lostPermission")
+    HVG.MemberListItem = await ZLibrary.ReactComponents.getComponentByName('MemberListItem', `.${HVG.MemberClasses.member}`)
+    if (!BdApi.Plugins.isEnabled('HighVis')) return this.log('stopped before start completed')
     HVG.PrivateChannel = ZLibrary.WebpackModules.getByProps("DirectMessage")
     HVG.MemberListItemRender = HVG.MemberListItem.component.prototype.render
     HVG.PrivateChannelRender = HVG.PrivateChannel.default.prototype.render
@@ -150,8 +152,8 @@ class HighVis {
     Dispatcher.unsubscribe('MESSAGE_UPDATE', this.messageUpdate)
 
     BdApi.clearCSS('HighVis-CSS')
-    HVG.MemberListItem.component.prototype.render = HVG.MemberListItemRender
-    HVG.PrivateChannel.default.prototype.render = HVG.PrivateChannelRender
+    HVG.MemberListItem && (HVG.MemberListItem.component.prototype.render = HVG.MemberListItemRender)
+    HVG.PrivateChannel && (HVG.PrivateChannel.default.prototype.render = HVG.PrivateChannelRender)
     this.log('stopped')
   }
 }
