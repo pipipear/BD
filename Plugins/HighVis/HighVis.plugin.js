@@ -8,7 +8,7 @@
 
 
 class HighVis {
-  getVersion = () => '0.1.1' // Zlibary requires a quoted string
+  getVersion = () => '0.1.2' // Zlibary requires a quoted string
 
   invisArray = []
   presDedupe = []
@@ -120,15 +120,15 @@ class HighVis {
     `)
 
     HVG.MemberListItem = await ZLibrary.ReactComponents.getComponentByName('MemberListItem')
-    HVG.PrivateChannel = await ZLibrary.ReactComponents.getComponentByName('PrivateChannel')
+    HVG.PrivateChannel = ZLibrary.WebpackModules.getByProps("DirectMessage")
     HVG.MemberListItemRender = HVG.MemberListItem.component.prototype.render
-    HVG.PrivateChannelRender = HVG.PrivateChannel.component.prototype.render
+    HVG.PrivateChannelRender = HVG.PrivateChannel.default.prototype.render
     HVG.MemberListItem.component.prototype.render = function() {
       if (this.props.status == 'offline' && this.props.isTyping) this.props.status = 'invisible'
       if (this.props.status == 'offline' && window.HighVis.this.invisArray.includes(this.props.user.id)) this.props.status = 'invisible'
       return HVG.MemberListItemRender.apply(this, arguments)
     }
-    HVG.PrivateChannel.component.prototype.render = function() {
+    HVG.PrivateChannel.default.prototype.render = function() {
       if (this.props.status == 'offline' && this.props.isTyping) this.props.status = 'invisible'
       if (this.props.status == 'offline' && window.HighVis.this.invisArray.includes(this.props.user.id)) this.props.status = 'invisible'
       return HVG.PrivateChannelRender.apply(this, arguments)
@@ -151,7 +151,7 @@ class HighVis {
 
     BdApi.clearCSS('HighVis-CSS')
     HVG.MemberListItem.component.prototype.render = HVG.MemberListItemRender
-    HVG.PrivateChannel.component.prototype.render = HVG.PrivateChannelRender
+    HVG.PrivateChannel.default.prototype.render = HVG.PrivateChannelRender
     this.log('stopped')
   }
 }
